@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+    
+	<appender name="INFO-ALL" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="d:\\sqlautoreview-info.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="threshold" value="info" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="WARN-ALL" class="org.apache.log4j.FileAppender">
+		<param name="file" value="d:\\sqlautoreview-warn.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="threshold" value="warn" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="ERROR-ALL" class="org.apache.log4j.FileAppender">
+		<param name="file" value="d:\\sqlautoreview-error.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="threshold" value="error" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+	
+	<root>
+		<level value="debug" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="INFO-ALL" />
+		<appender-ref ref="WARN-ALL" />
+		<appender-ref ref="ERROR-ALL" />
+	</root>
+</log4j:configuration>
