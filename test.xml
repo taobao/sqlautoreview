@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Activity">
+	<typeAlias alias="activity"
+		type="com.taobao.test.domain.Activity" />
+	<resultMap id="activityResult" class="activity">
+		<result property="id" column="ID" />
+		<result property="gmtCreate" column="GMT_CREATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" />
+		<result property="description" column="INFO" />
+		<result property="displaySendNumber" column="SMS_FACK_MAX" />
+		<result property="sendNumber" column="SMS_REAL_MAX" />
+		<result property="status" column="STATUS" />
+		<result property="name" column="NAME" />
+		<result property="startTime" column="START_TIME" />
+		<result property="endTime" column="END_TIME" />
+	</resultMap>
+	
+	<!-- 根据id查询活动 -->
+	<select id="getActivityById" resultMap="activityResult"	parameterClass="java.lang.Long">
+		SELECT 
+			ID,
+			GMT_CREATE,
+			GMT_MODIFIED,
+			NAME,
+			INFO,
+			SMS_FACK_MAX,
+			SMS_REAL_MAX,
+			START_TIME,
+			END_TIME,
+			STATUS
+		FROM
+			test
+		WHERE
+			ID = #activityId#
+	</select>
+	
+	
+	<!-- 根据当前时间获取当前任务 -->
+	<select id="getCurrentActivity" resultMap="activityResult">
+		SELECT 
+			ID,
+			GMT_CREATE,
+			GMT_MODIFIED,
+			NAME,
+			INFO,
+			SMS_FACK_MAX,
+			SMS_REAL_MAX,
+			START_TIME,
+			END_TIME,
+			STATUS
+		FROM
+			test
+		WHERE 
+		<![CDATA[ START_TIME <=NOW() AND END_TIME>=NOW() ]]> 
+	</select>
+	
+</sqlMap>
