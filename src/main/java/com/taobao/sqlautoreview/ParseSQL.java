@@ -697,6 +697,7 @@ public class ParseSQL {
 			column_name=alias_column_name;
 			map.put(alias_column_name, column_name);
 			logger.debug("column_name:"+column_name+" alias_column_name:"+alias_column_name);
+			return;
 		}
 		//´¦Àí¿Õ¸ñ
 		while(k-1>=0 && select_expr.substring(k-1, k).equals(" "))
